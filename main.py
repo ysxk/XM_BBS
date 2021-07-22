@@ -56,6 +56,13 @@ class XM_BBS():
         r = re.findall('([\S]*?)=([\S]*);?', base_cookie)
         if len(r) == 0:
             print("cookie错误！")
+            print("未在代码中指定cookie且cookie.txt不存在")
+            cookie = input("请输入你的cookie,windows系统点按鼠标右键粘贴")
+            cookiefile = open("cookie.txt", "w")
+            print(cookiefile.name)
+            cookiefile.write(cookie)
+            Client = XM_BBS(cookie)
+            AutoLike(Client)
             exit(0)
         r = dict(r)
         for i in r:
@@ -239,7 +246,11 @@ if __name__ == '__main__':
                 cookie=f.read()
         except:
             print("未在代码中指定cookie且cookie.txt不存在")
-            exit(-1)
+            cookie = input("请输入你的cookie,windows系统点按鼠标右键粘贴")
+            cookiefile = open("cookie.txt", "w")
+            cookiefile.write(cookie)
+            Client = XM_BBS(cookie)
+            AutoLike(Client)
     else:
         cookie=COOKIE
     Client = XM_BBS(cookie)
